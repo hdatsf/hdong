@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.upms.dao.mapper.UpmsPermissionMapper">
-  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsPermission">
+<mapper namespace="com.hdong.upms.dao.mapper.UpmsPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.hdong.upms.dao.model.UpmsPermission">
     <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
     <result column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
@@ -76,7 +76,7 @@
     permission_id, system_id, pid, name, type, permission_value, uri, icon, status, ctime, 
     orders
   </sql>
-  <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsPermissionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hdong.upms.dao.model.UpmsPermissionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -100,13 +100,13 @@
     delete from upms_permission
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.UpmsPermissionExample">
+  <delete id="deleteByExample" parameterType="com.hdong.upms.dao.model.UpmsPermissionExample">
     delete from upms_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsPermission">
+  <insert id="insert" parameterType="com.hdong.upms.dao.model.UpmsPermission">
     insert into upms_permission (permission_id, system_id, pid, 
       name, type, permission_value, 
       uri, icon, status, 
@@ -116,7 +116,7 @@
       #{uri,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
       #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsPermission">
+  <insert id="insertSelective" parameterType="com.hdong.upms.dao.model.UpmsPermission">
     insert into upms_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="permissionId != null">
@@ -189,7 +189,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.upms.dao.model.UpmsPermissionExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.hdong.upms.dao.model.UpmsPermissionExample" resultType="java.lang.Long">
     select count(*) from upms_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -253,7 +253,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsPermission">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hdong.upms.dao.model.UpmsPermission">
     update upms_permission
     <set>
       <if test="systemId != null">
@@ -289,7 +289,7 @@
     </set>
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsPermission">
+  <update id="updateByPrimaryKey" parameterType="com.hdong.upms.dao.model.UpmsPermission">
     update upms_permission
     set system_id = #{systemId,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},

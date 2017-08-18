@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.upms.dao.mapper.UpmsUserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsUserRole">
+<mapper namespace="com.hdong.upms.dao.mapper.UpmsUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.hdong.upms.dao.model.UpmsUserRole">
     <id column="user_role_id" jdbcType="INTEGER" property="userRoleId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="role_id" jdbcType="INTEGER" property="roleId" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     user_role_id, user_id, role_id
   </sql>
-  <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsUserRoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hdong.upms.dao.model.UpmsUserRoleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,19 +91,19 @@
     delete from upms_user_role
     where user_role_id = #{userRoleId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.UpmsUserRoleExample">
+  <delete id="deleteByExample" parameterType="com.hdong.upms.dao.model.UpmsUserRoleExample">
     delete from upms_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsUserRole">
+  <insert id="insert" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
     insert into upms_user_role (user_role_id, user_id, role_id
       )
     values (#{userRoleId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsUserRole">
+  <insert id="insertSelective" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
     insert into upms_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userRoleId != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.upms.dao.model.UpmsUserRoleExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.hdong.upms.dao.model.UpmsUserRoleExample" resultType="java.lang.Long">
     select count(*) from upms_user_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsUserRole">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
     update upms_user_role
     <set>
       <if test="userId != null">
@@ -172,7 +172,7 @@
     </set>
     where user_role_id = #{userRoleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsUserRole">
+  <update id="updateByPrimaryKey" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
     update upms_user_role
     set user_id = #{userId,jdbcType=INTEGER},
       role_id = #{roleId,jdbcType=INTEGER}

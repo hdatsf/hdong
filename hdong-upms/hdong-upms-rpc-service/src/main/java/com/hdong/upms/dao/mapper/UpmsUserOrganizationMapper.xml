@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.upms.dao.mapper.UpmsUserOrganizationMapper">
-  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsUserOrganization">
+<mapper namespace="com.hdong.upms.dao.mapper.UpmsUserOrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.hdong.upms.dao.model.UpmsUserOrganization">
     <id column="user_organization_id" jdbcType="INTEGER" property="userOrganizationId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     user_organization_id, user_id, organization_id
   </sql>
-  <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsUserOrganizationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hdong.upms.dao.model.UpmsUserOrganizationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,19 +91,19 @@
     delete from upms_user_organization
     where user_organization_id = #{userOrganizationId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.UpmsUserOrganizationExample">
+  <delete id="deleteByExample" parameterType="com.hdong.upms.dao.model.UpmsUserOrganizationExample">
     delete from upms_user_organization
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsUserOrganization">
+  <insert id="insert" parameterType="com.hdong.upms.dao.model.UpmsUserOrganization">
     insert into upms_user_organization (user_organization_id, user_id, organization_id
       )
     values (#{userOrganizationId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{organizationId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsUserOrganization">
+  <insert id="insertSelective" parameterType="com.hdong.upms.dao.model.UpmsUserOrganization">
     insert into upms_user_organization
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userOrganizationId != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.upms.dao.model.UpmsUserOrganizationExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.hdong.upms.dao.model.UpmsUserOrganizationExample" resultType="java.lang.Long">
     select count(*) from upms_user_organization
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsUserOrganization">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hdong.upms.dao.model.UpmsUserOrganization">
     update upms_user_organization
     <set>
       <if test="userId != null">
@@ -172,7 +172,7 @@
     </set>
     where user_organization_id = #{userOrganizationId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsUserOrganization">
+  <update id="updateByPrimaryKey" parameterType="com.hdong.upms.dao.model.UpmsUserOrganization">
     update upms_user_organization
     set user_id = #{userId,jdbcType=INTEGER},
       organization_id = #{organizationId,jdbcType=INTEGER}

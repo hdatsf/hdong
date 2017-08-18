@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.upms.dao.mapper.UpmsRolePermissionMapper">
-  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsRolePermission">
+<mapper namespace="com.hdong.upms.dao.mapper.UpmsRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.hdong.upms.dao.model.UpmsRolePermission">
     <id column="role_permission_id" jdbcType="INTEGER" property="rolePermissionId" />
     <result column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     role_permission_id, role_id, permission_id
   </sql>
-  <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsRolePermissionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hdong.upms.dao.model.UpmsRolePermissionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,19 +91,19 @@
     delete from upms_role_permission
     where role_permission_id = #{rolePermissionId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.UpmsRolePermissionExample">
+  <delete id="deleteByExample" parameterType="com.hdong.upms.dao.model.UpmsRolePermissionExample">
     delete from upms_role_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsRolePermission">
+  <insert id="insert" parameterType="com.hdong.upms.dao.model.UpmsRolePermission">
     insert into upms_role_permission (role_permission_id, role_id, permission_id
       )
     values (#{rolePermissionId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsRolePermission">
+  <insert id="insertSelective" parameterType="com.hdong.upms.dao.model.UpmsRolePermission">
     insert into upms_role_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="rolePermissionId != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.upms.dao.model.UpmsRolePermissionExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.hdong.upms.dao.model.UpmsRolePermissionExample" resultType="java.lang.Long">
     select count(*) from upms_role_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsRolePermission">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hdong.upms.dao.model.UpmsRolePermission">
     update upms_role_permission
     <set>
       <if test="roleId != null">
@@ -172,7 +172,7 @@
     </set>
     where role_permission_id = #{rolePermissionId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsRolePermission">
+  <update id="updateByPrimaryKey" parameterType="com.hdong.upms.dao.model.UpmsRolePermission">
     update upms_role_permission
     set role_id = #{roleId,jdbcType=INTEGER},
       permission_id = #{permissionId,jdbcType=INTEGER}

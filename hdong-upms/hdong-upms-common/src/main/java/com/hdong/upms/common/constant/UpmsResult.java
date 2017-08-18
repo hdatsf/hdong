@@ -1,10 +1,10 @@
-package com.hdong.upms.server.constant;
+package com.hdong.upms.common.constant;
 
 import com.hdong.common.base.BaseResult;
 
 /**
  * upms系统常量枚举类
- * Created by shuzheng on 2017/2/18.
+ * Created by hdong on 2017/2/18.
  */
 public class UpmsResult extends BaseResult {
 

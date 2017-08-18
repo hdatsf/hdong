@@ -37,9 +37,9 @@ public abstract class BaseController {
         }
         // shiro会话已过期异常
         if (exception instanceof InvalidSessionException) {
-            return "/error.jsp";
+            return "/500.jsp";
         }
-        return "/error.jsp";
+        return "/500.jsp";
     }
 
     /**

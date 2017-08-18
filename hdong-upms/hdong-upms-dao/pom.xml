@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.hdong</groupId>
-			<artifactId>hdong-common</artifactId>
+			<artifactId>hdong-upms-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

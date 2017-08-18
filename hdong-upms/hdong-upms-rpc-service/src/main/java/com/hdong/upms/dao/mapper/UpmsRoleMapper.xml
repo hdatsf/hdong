@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.upms.dao.mapper.UpmsRoleMapper">
-  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.UpmsRole">
+<mapper namespace="com.hdong.upms.dao.mapper.UpmsRoleMapper">
+  <resultMap id="BaseResultMap" type="com.hdong.upms.dao.model.UpmsRole">
     <id column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="title" jdbcType="VARCHAR" property="title" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     role_id, name, title, description, ctime, orders
   </sql>
-  <select id="selectByExample" parameterType="com.zheng.upms.dao.model.UpmsRoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hdong.upms.dao.model.UpmsRoleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,13 +94,13 @@
     delete from upms_role
     where role_id = #{roleId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.UpmsRoleExample">
+  <delete id="deleteByExample" parameterType="com.hdong.upms.dao.model.UpmsRoleExample">
     delete from upms_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.upms.dao.model.UpmsRole">
+  <insert id="insert" parameterType="com.hdong.upms.dao.model.UpmsRole">
     insert into upms_role (role_id, name, title, 
       description, ctime, orders
       )
@@ -108,7 +108,7 @@
       #{description,jdbcType=VARCHAR}, #{ctime,jdbcType=BIGINT}, #{orders,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.UpmsRole">
+  <insert id="insertSelective" parameterType="com.hdong.upms.dao.model.UpmsRole">
     insert into upms_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.upms.dao.model.UpmsRoleExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.hdong.upms.dao.model.UpmsRoleExample" resultType="java.lang.Long">
     select count(*) from upms_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.UpmsRole">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hdong.upms.dao.model.UpmsRole">
     update upms_role
     <set>
       <if test="name != null">
@@ -216,7 +216,7 @@
     </set>
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.UpmsRole">
+  <update id="updateByPrimaryKey" parameterType="com.hdong.upms.dao.model.UpmsRole">
     update upms_role
     set name = #{name,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
