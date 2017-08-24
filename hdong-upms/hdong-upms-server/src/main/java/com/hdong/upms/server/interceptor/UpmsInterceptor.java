@@ -2,16 +2,18 @@ package com.hdong.upms.server.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 import com.hdong.common.util.PropertiesFileUtil;
 import com.hdong.upms.dao.model.UpmsUser;
+import com.hdong.upms.dao.model.UpmsUserExample;
 import com.hdong.upms.rpc.api.UpmsApiService;
+import com.hdong.upms.rpc.api.UpmsUserService;
 
 /**
  * 登录信息拦截器
@@ -19,11 +21,14 @@ import com.hdong.upms.rpc.api.UpmsApiService;
  */
 public class UpmsInterceptor extends HandlerInterceptorAdapter {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
+    //private static Logger _log = LoggerFactory.getLogger(UpmsInterceptor.class);
     private static final String HDONG_OSS_ALIYUN_OSS_POLICY = PropertiesFileUtil.getInstance("hdong-oss-client").get("hdong.oss.aliyun.oss.policy");
 
     @Autowired
     UpmsApiService upmsApiService;
+    
+    @Autowired
+    UpmsUserService upmsUserService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -35,7 +40,9 @@ public class UpmsInterceptor extends HandlerInterceptorAdapter {
         // 登录信息
         Subject subject = SecurityUtils.getSubject();
         String username = (String) subject.getPrincipal();
-        UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
+        UpmsUserExample userExample = new UpmsUserExample();
+        userExample.createCriteria().andUsernameEqualTo(username);
+        UpmsUser upmsUser = upmsUserService.selectFirstByExample(userExample);
         request.setAttribute("upmsUser", upmsUser);
         return true;
     }

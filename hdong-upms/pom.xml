@@ -24,5 +24,7 @@
     <module>hdong-upms-dao</module>
     <module>hdong-upms-rpc-api</module>
     <module>hdong-upms-rpc-service</module>
+    <module>hdong-upms-common</module>
+    <module>hdong-upms-client</module>
   </modules>
 </project>

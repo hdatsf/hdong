@@ -22,9 +22,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.alibaba.fastjson.JSON;
-import com.hdong.upms.dao.model.UpmsLog;
-import com.hdong.upms.rpc.api.UpmsApiService;
 import com.hdong.common.util.RequestUtil;
+import com.hdong.upms.dao.model.UpmsLog;
+import com.hdong.upms.rpc.api.UpmsLogService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -43,7 +43,7 @@ public class LogAspect {
 	private long endTime = 0L;
 
 	@Autowired
-	UpmsApiService upmsApiService;
+	UpmsLogService upmsLogService;
 
 	@Before("execution(* *..controller..*.*(..))")
 	public void doBeforeInServiceLayer(JoinPoint joinPoint) {
@@ -98,7 +98,7 @@ public class LogAspect {
 		upmsLog.setUrl(ObjectUtils.toString(request.getRequestURL()));
 		upmsLog.setUserAgent(request.getHeader("User-Agent"));
 		upmsLog.setUsername(ObjectUtils.toString(request.getUserPrincipal()));
-		upmsApiService.insertUpmsLogSelective(upmsLog);
+		upmsLogService.insertSelective(upmsLog);
 		return result;
 	}
 

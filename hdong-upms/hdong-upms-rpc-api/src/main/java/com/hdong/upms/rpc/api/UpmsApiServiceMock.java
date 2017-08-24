@@ -1,10 +1,13 @@
 package com.hdong.upms.rpc.api;
 
-import com.hdong.upms.dao.model.*;
+import java.util.List;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import com.hdong.upms.dao.model.UpmsPermission;
+import com.hdong.upms.dao.model.UpmsRolePermission;
 
 /**
  * 降级实现UpmsApiService接口
@@ -13,28 +16,21 @@ import java.util.List;
 public class UpmsApiServiceMock implements UpmsApiService {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsApiServiceMock.class);
-
     @Override
-    public List<UpmsPermission> selectUpmsPermissionByUpmsUserId(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsPermissionByUpmsUserId");
+    public List<Set<String>> selectRolesPermissionsByName(String username, String systemName){
+        _log.info("UpmsApiServiceMock => selectRolesPermissionByName");
         return null;
     }
-
+    
     @Override
-    public List<UpmsPermission> selectUpmsPermissionByUpmsUserIdByCache(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsPermissionByUpmsUserIdByCache");
+    public List<Set<String>> selectRolesPermissionsByNameByCache(String username, String systemName){
+        _log.info("UpmsApiServiceMock => selectRolesPermissionByNameByCache");
         return null;
     }
-
+    
     @Override
-    public List<UpmsRole> selectUpmsRoleByUpmsUserId(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsRoleByUpmsUserId");
-        return null;
-    }
-
-    @Override
-    public List<UpmsRole> selectUpmsRoleByUpmsUserIdByCache(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsRoleByUpmsUserIdByCache");
+    public List<UpmsPermission> selectMenuByUpmsUserIdAndSystemId(Integer systemId, Integer upmsUserId){
+        _log.info("UpmsApiServiceMock => selectMenuByUpmsUserIdAndSystemId");
         return null;
     }
 
@@ -42,36 +38,6 @@ public class UpmsApiServiceMock implements UpmsApiService {
     public List<UpmsRolePermission> selectUpmsRolePermisstionByUpmsRoleId(Integer upmsRoleId) {
         _log.info("UpmsApiServiceMock => selectUpmsRolePermisstionByUpmsRoleId");
         return null;
-    }
-
-    @Override
-    public List<UpmsUserPermission> selectUpmsUserPermissionByUpmsUserId(Integer upmsUserId) {
-        _log.info("UpmsApiServiceMock => selectUpmsUserPermissionByUpmsUserId");
-        return null;
-    }
-
-    @Override
-    public List<UpmsSystem> selectUpmsSystemByExample(UpmsSystemExample upmsSystemExample) {
-        _log.info("UpmsApiServiceMock => selectUpmsSystemByExample");
-        return null;
-    }
-
-    @Override
-    public List<UpmsOrganization> selectUpmsOrganizationByExample(UpmsOrganizationExample upmsOrganizationExample) {
-        _log.info("UpmsApiServiceMock => selectUpmsOrganizationByExample");
-        return null;
-    }
-
-    @Override
-    public UpmsUser selectUpmsUserByUsername(String username) {
-        _log.info("UpmsApiServiceMock => selectUpmsUserByUsername");
-        return null;
-    }
-
-    @Override
-    public int insertUpmsLogSelective(UpmsLog record) {
-        _log.info("UpmsApiServiceMock => insertSelective");
-        return 0;
     }
 
 }

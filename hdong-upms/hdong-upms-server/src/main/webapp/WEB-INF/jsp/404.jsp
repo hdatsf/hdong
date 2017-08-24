@@ -1,89 +1,30 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<% pageContext.setAttribute("basePath", request.getContextPath());%>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | 404 Page not found</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="${basePath}/resources//bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="${basePath}/resources//bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="${basePath}/resources//bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="${basePath}/resources//dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="${basePath}/resources//dist/css/skins/_all-skins.min.css">
+<style>
+body {color: #333; background: #fff; padding: 0; margin: 0; position: relative; min-width: 700px; font-family: arial; font-size: 12px }
+p, form, ol, ul, li, dl, dt, dd, h3 {margin: 0; padding: 0; list-style: none }
+#content_left {margin-bottom: 14px; padding-bottom: 5px; border-bottom: 1px solid #f3f3f3 }
+#content_left {width: 540px; padding-left: 121px; padding-top: 5px }
+.norsSuggest {display: inline-block; color: #333; font-family: arial; font-size: 13px; position: relative; } 
+.norsTitle {font-size: 22px; font-family: Microsoft Yahei; font-weight: normal; color: #333; margin: 35px 0 25px 0; }
+.norsTitle2 {font-family: arial; font-size: 13px; color: #666; }
+.norsSuggest ol {margin-left: 47px; }
+.norsSuggest li {margin: 13px 0; }
+</style>
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        404 Error Page
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">404 error</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="error-page">
-        <h2 class="headline text-yellow"> 404</h2>
-
-        <div class="error-content">
-          <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
-
-          <p>
-            We could not find the page you were looking for.
-            Meanwhile, you may <a href="${basePath}/resources//index.html">return to dashboard</a> or try using the search form.
-          </p>
-
-          <form class="search-form">
-            <div class="input-group">
-              <input type="text" name="search" class="form-control" placeholder="Search">
-
-              <div class="input-group-btn">
-                <button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </div>
+<div id="wrapper_wrapper">
+    <div id="content_left">
+        <div class="nors">
+            <div class="norsSuggest">
+                <h3 class="norsTitle">很抱歉，您要访问的页面不存在！</h3>
+                <p class="norsTitle2">温馨提示：</p>
+                <ol>
+                    <li>请检查您访问的网址是否正确</li>
+                    <li>如果您不能确认访问的网址，请重新<a href="${pageContext.request.contextPath}/sso/logout">登录</a>。</li>
+                    <li>回到顶部重新发起搜索</li>
+                    <li>如有任何意见或建议，请及时我们tel:0571-88888888</a>。</li>
+                </ol>
             </div>
-            <!-- /.input-group -->
-          </form>
         </div>
-        <!-- /.error-content -->
-      </div>
-      <!-- /.error-page -->
-    </section>
-    <!-- /.content -->
-  </div>
-
-<!-- jQuery 3 -->
-<script src="${basePath}/resources//bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="${basePath}/resources//bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="${basePath}/resources//bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="${basePath}/resources//dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="${basePath}/resources//dist/js/demo.js"></script>
-</body>
-</html>
+    </div>
+</div>

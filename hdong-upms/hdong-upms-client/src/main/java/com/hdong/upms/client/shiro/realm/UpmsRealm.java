@@ -1,24 +1,27 @@
 package com.hdong.upms.client.shiro.realm;
 
-import com.hdong.common.util.MD5Util;
-import com.hdong.common.util.PropertiesFileUtil;
-import com.hdong.upms.dao.model.UpmsPermission;
-import com.hdong.upms.dao.model.UpmsRole;
-import com.hdong.upms.dao.model.UpmsUser;
-import com.hdong.upms.rpc.api.UpmsApiService;
-import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.authc.*;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import com.hdong.common.util.MD5Util;
+import com.hdong.common.util.PropertiesFileUtil;
+import com.hdong.upms.dao.model.UpmsUser;
+import com.hdong.upms.dao.model.UpmsUserExample;
+import com.hdong.upms.rpc.api.UpmsApiService;
+import com.hdong.upms.rpc.api.UpmsUserService;
 
 /**
  * 用户认证和授权
@@ -26,10 +29,15 @@ import java.util.Set;
  */
 public class UpmsRealm extends AuthorizingRealm {
 
-    private static Logger _log = LoggerFactory.getLogger(UpmsRealm.class);
+    //private static Logger _log = LoggerFactory.getLogger(UpmsRealm.class);
 
     @Autowired
     private UpmsApiService upmsApiService;
+    
+    @Autowired
+    private UpmsUserService upmsUserService;
+    
+    private static final String SYSTEM_NAME = PropertiesFileUtil.getInstance("hdong-upms-client").get("system_name");
 
     /**
      * 授权：验证权限时调用
@@ -39,29 +47,13 @@ public class UpmsRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String username = (String) principalCollection.getPrimaryPrincipal();
-        UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
-
-        // 当前用户所有角色
-        List<UpmsRole> upmsRoles = upmsApiService.selectUpmsRoleByUpmsUserId(upmsUser.getUserId());
-        Set<String> roles = new HashSet<>();
-        for (UpmsRole upmsRole : upmsRoles) {
-            if (StringUtils.isNotBlank(upmsRole.getName())) {
-                roles.add(upmsRole.getName());
-            }
-        }
-
-        // 当前用户所有权限
-        List<UpmsPermission> upmsPermissions = upmsApiService.selectUpmsPermissionByUpmsUserId(upmsUser.getUserId());
-        Set<String> permissions = new HashSet<>();
-        for (UpmsPermission upmsPermission : upmsPermissions) {
-            if (StringUtils.isNotBlank(upmsPermission.getPermissionValue())) {
-                permissions.add(upmsPermission.getPermissionValue());
-            }
-        }
-
+        List<Set<String>> setList = upmsApiService.selectRolesPermissionsByName(username, SYSTEM_NAME);
+        
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        simpleAuthorizationInfo.setStringPermissions(permissions);
-        simpleAuthorizationInfo.setRoles(roles);
+        if(setList !=null && setList.size()==2) {
+            simpleAuthorizationInfo.setRoles(setList.get(0));
+            simpleAuthorizationInfo.setStringPermissions(setList.get(1));
+        }
         return simpleAuthorizationInfo;
     }
 
@@ -82,7 +74,9 @@ public class UpmsRealm extends AuthorizingRealm {
         }
 
         // 查询用户信息
-        UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
+        UpmsUserExample userExample = new UpmsUserExample();
+        userExample.createCriteria().andUsernameEqualTo(username);
+        UpmsUser upmsUser = upmsUserService.selectFirstByExample(userExample);
 
         if (null == upmsUser) {
             throw new UnknownAccountException();

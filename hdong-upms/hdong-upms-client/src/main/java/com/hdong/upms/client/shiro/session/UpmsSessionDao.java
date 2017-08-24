@@ -64,7 +64,7 @@ public class UpmsSessionDao extends CachingSessionDAO {
             upmsSession.setAttribute("FORCE_LOGOUT", cacheUpmsSession.getAttribute("FORCE_LOGOUT"));
         }
         RedisUtil.set(HDONG_UPMS_SHIRO_SESSION_ID + "_" + session.getId(), SerializableUtil.serialize(session), (int) session.getTimeout() / 1000);
-        // 更新hdong_UPMS_SERVER_SESSION_ID、hdong_UPMS_SERVER_CODE过期时间 TODO
+        // 更新HDONG_UPMS_SERVER_SESSION_ID、HDONG_UPMS_SERVER_CODE过期时间 
         _log.debug("doUpdate >>>>> sessionId={}", session.getId());
     }
 
@@ -110,8 +110,8 @@ public class UpmsSessionDao extends CachingSessionDAO {
      * @param limit
      * @return
      */
-    public Map getActiveSessions(int offset, int limit) {
-        Map sessions = new HashMap();
+    public Map<String, Object> getActiveSessions(int offset, int limit) {
+        Map<String, Object> sessions = new HashMap<String, Object>();
         Jedis jedis = RedisUtil.getJedis();
         // 获取在线会话总数
         long total = jedis.llen(HDONG_UPMS_SERVER_SESSION_IDS);
