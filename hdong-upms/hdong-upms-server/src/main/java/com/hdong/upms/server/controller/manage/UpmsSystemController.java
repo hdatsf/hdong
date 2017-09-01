@@ -78,7 +78,7 @@ public class UpmsSystemController extends BaseController {
     @RequiresPermissions("upms:system:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create() {
-        return "/manage/system/create.jsp";
+        return "/manage/system/systemCreate.jsp";
     }
 
     @ApiOperation(value = "新增系统")
@@ -113,7 +113,7 @@ public class UpmsSystemController extends BaseController {
     public String update(@PathVariable("id") int id, ModelMap modelMap) {
         UpmsSystem system = upmsSystemService.selectByPrimaryKey(id);
         modelMap.put("system", system);
-        return "/manage/system/update.jsp";
+        return "/manage/system/systemUpdate.jsp";
     }
 
     @ApiOperation(value = "修改系统")

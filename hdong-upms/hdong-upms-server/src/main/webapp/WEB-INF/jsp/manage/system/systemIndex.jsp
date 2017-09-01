@@ -16,12 +16,12 @@
 	            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
 	        </button>
 	        <shiro:hasPermission name="upms:system:create">
-	        <button id="btn_add" type="button" class="btn btn-primary btn-sm">
+	        <button id="btn_create" type="button" class="btn btn-primary btn-sm">
 	            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 	        </button>
 	        </shiro:hasPermission>
 	        <shiro:hasPermission name="upms:system:update">
-	        <button id="btn_edit" type="button" class="btn btn-primary btn-sm">
+	        <button id="btn_update" type="button" class="btn btn-primary btn-sm">
 	            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 	        </button>
 	        </shiro:hasPermission>
@@ -94,12 +94,47 @@ $(function () {
 
 	var ButtonInit = function () {
 	    var oInit = new Object();
-	    var postdata = {};
-
 	    oInit.Init = function () {
 	        //初始化页面上面的按钮事件
+	        $("#toolbar #btn_query").click(function(){
+	            $('#tb_departments').bootstrapTable('refresh');
+	        });
+			$("#toolbar #btn_create").click(function(){
+			    $.dialog({
+					animationSpeed: 300,
+					title: '新增系统',
+					content: 'url:manage/system/create',
+					onContentReady: function () {
+					}
+				});
+	        });
+			$("#toolbar #btn_update").click(function(){
+			    var rows = $('#tb_departments').bootstrapTable('getSelections');
+				if (rows.length != 1) {
+					$.confirm({
+						title: false,
+						content: '请选择一条记录！',
+						autoClose: 'cancel|3000',
+						backgroundDismiss: true,
+						buttons: {
+							cancel: {
+								text: '取消',
+								btnClass: 'waves-effect waves-button'
+							}
+						}
+					});
+				} else {
+					$.dialog({
+						animationSpeed: 300,
+						title: '修改系统',
+						theme:'bootstrap',
+						content: 'url:manage/system/update/' + rows[0].systemId,
+						onContentReady: function () {
+						}
+					});
+				}
+	        });
 	    };
-
 	    return oInit;
 	};
     //1.初始化Table

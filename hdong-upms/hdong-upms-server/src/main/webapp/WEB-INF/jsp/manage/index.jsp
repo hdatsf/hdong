@@ -25,6 +25,9 @@
 <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="resources/bootstrap/css/bootstrap-table.min.css" rel="stylesheet" />
 
+<!-- jquery confirm -->
+<link href="resources/jquery-confirm/jquery-confirm.min.css" rel="stylesheet"/>
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -221,6 +224,7 @@
 
 	<!-- jQuery 3 -->
 	<script src="resources/jquery/jquery.min.js"></script>
+	<script src="resources/jquery-confirm/jquery-confirm.min.js"></script>
 	<!-- Bootstrap 3.3.7 -->
 	<script src="resources/bootstrap/js/bootstrap-table.min.js"></script>
 	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
