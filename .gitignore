@@ -7,7 +7,6 @@ target
 *.log
 *.log.*
 **/resources/hdong-admin
-generatorConfig.xml
 .DS_Store
 *.cache
 *.lock
