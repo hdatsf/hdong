@@ -129,7 +129,7 @@
 										<a href="#" class="btn btn-default btn-flat">信息修改</a>
 									</div>
 									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">退出</a>
+										<a href="sso/logout" class="btn btn-default btn-flat">退出</a>
 									</div>
 								</li>
 							</ul></li>
@@ -224,7 +224,7 @@
 
 	<!-- jQuery 3 -->
 	<script src="resources/jquery/jquery.min.js"></script>
-	<script src="resources/jquery-confirm/jquery-confirm.min.js"></script>
+	<script src="resources/jquery-confirm/jquery-confirm.js"></script>
 	<!-- Bootstrap 3.3.7 -->
 	<script src="resources/bootstrap/js/bootstrap-table.min.js"></script>
 	<script src="resources/bootstrap/js/bootstrap.min.js"></script>

@@ -1,39 +1,42 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <div id="createDialog" class="crudDialog">
-	<form id="createForm" method="post">
+	<form id="createForm" method="post" class="form-horizontal">
 		<div class="form-group">
-			<label for="theme"></label>
-			<input id="theme" type="color" class="form-control" name="theme" maxlength="50">
-		</div>
-		<div class="form-group">
-			<label for="icon">图标</label>
-			<input id="icon" type="text" class="form-control" name="icon" maxlength="20">
-		</div>
-		<div class="form-group">
-			<label for="title">标题</label>
-			<input id="title" type="text" class="form-control" name="title" maxlength="20" required="true">
-		</div>
-		<div class="form-group">
-			<label for="name">名称</label>
-			<input id="name" type="text" class="form-control" name="name" maxlength="20" required="true">
-		</div>
-		<div class="row">
-			<div class="col-lg-8 form-group">
-				<label for="name">背景图</label>
-				<input id="banner" type="text" class="form-control" name="banner" maxlength="150">
-			</div>
-			<div class="col-lg-4">
-				<div id="picker">上传背景图</div>
+			<label for="theme" class="col-md-3 control-label">主题色</label>
+			<div class="col-md-9">
+				<input id="theme" type="color" class="form-control" name="theme" maxlength="50">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="description">描述</label>
-			<input id="description" type="text" class="form-control" name="description" maxlength="300">
+			<label for="icon" class="col-md-3 control-label">图标</label>
+			<div class="col-md-9">
+				<input id="icon" type="text" class="form-control" name="icon" maxlength="20">
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="basepath">根目录</label>
-			<input id="basepath" type="text" class="form-control" name="basepath" maxlength="100">
+			<label for="title" class="col-md-3 control-label">标题</label>
+			<div class="col-md-9">
+				<input id="title" type="text" class="form-control" name="title" maxlength="20" required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-md-3 control-label">名称</label>
+			<div class="col-md-9">
+				<input id="name" type="text" class="form-control" name="name" maxlength="20" required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="description" class="col-md-3 control-label">描述</label>
+			<div class="col-md-9">
+				<input id="description" type="text" class="form-control" name="description" maxlength="300">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="basepath" class="col-md-3 control-label">根目录</label>
+			<div class="col-md-9">
+				<input id="basepath" type="text" class="form-control" name="basepath" maxlength="100">
+			</div>
 		</div>
 		<div class="radio">
 			<div class="radio radio-inline radio-success">

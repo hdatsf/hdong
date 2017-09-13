@@ -178,12 +178,6 @@ public class SSOController extends BaseController {
     public String logout(HttpServletRequest request) {
         // shiro退出登录
         SecurityUtils.getSubject().logout();
-        // 跳回原地址
-//        String redirectUrl = request.getHeader("Referer");
-//        if (null == redirectUrl) {
-//            redirectUrl = "/";
-//        }
-        //跳回到登录首页
         return "redirect:/";
     }
 

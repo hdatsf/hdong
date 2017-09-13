@@ -1,67 +1,180 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<div id="createDialog" class="crudDialog">
-	<form id="createForm" method="post">
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<div id="updateDialog">
+	<form id="updateForm" method="post" class="form-horizontal">
 		<div class="form-group">
-			<label for="theme"></label>
-			<input id="theme" type="color" class="form-control" name="theme" maxlength="50" value="${system.theme}">
-		</div>
-		<div class="form-group">
-			<label for="icon">图标</label>
-			<input id="icon" type="text" class="form-control" name="icon" maxlength="20" value="${system.icon}">
-		</div>
-		<div class="form-group">
-			<label for="title">标题</label>
-			<input id="title" type="text" class="form-control" name="title" maxlength="20" value="${system.title}" required="true">
-		</div>
-		<div class="form-group">
-			<label for="name">名称</label>
-			<input id="name" type="text" class="form-control" name="name" maxlength="20" value="${system.name}" required="true">
-		</div>
-		<div class="row">
-			<div class="col-lg-8 form-group">
-				<label for="name">背景图</label>
-				<input id="banner" type="text" class="form-control" name="banner" maxlength="150" value="${system.banner}">
-			</div>
-			<div class="col-lg-4">
-				<div id="picker">上传背景图</div>
+			<label for="theme" class="col-md-3 control-label">主题色</label>
+			<div class="col-md-9">
+				<input id="theme" type="color" class="form-control" name="theme" maxlength="50" value="${system.theme}">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="description">描述</label>
-			<input id="description" type="text" class="form-control" name="description" maxlength="300" value="${system.description}">
+			<label for="icon" class="col-md-3 control-label">图标</label>
+			<div class="col-md-9">
+				<input id="icon" type="text" class="form-control" name="icon" maxlength="20" value="${system.icon}">
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="basepath">根目录</label>
-			<input id="basepath" type="text" class="form-control" name="basepath" maxlength="100" value="${system.basepath}">
-		</div>
-		<div class="radio">
-			<div class="radio radio-inline radio-success">
-				<input id="status_1" type="radio" name="status" value="1" <c:if test="${system.status==1}">checked</c:if>>
-				<label for="status_1">正常 </label>
-			</div>
-			<div class="radio radio-inline">
-				<input id="status_0" type="radio" name="status" value="-1" <c:if test="${system.status!=1}">checked</c:if>>
-				<label for="status_0">锁定 </label>
+			<label for="title" class="col-md-3 control-label">标题</label>
+			<div class="col-md-9">
+				<input id="title" type="text" class="form-control" name="title" maxlength="20" value="${system.title}"  required="true">
 			</div>
 		</div>
-		<div class="form-group text-right dialog-buttons">
-			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
-			<a class="waves-effect waves-button" href="javascript:;" onclick="createDialog.close();">取消</a>
+		<div class="form-group">
+			<label for="name" class="col-md-3 control-label">名称</label>
+			<div class="col-md-9">
+				<input id="name" type="text" class="form-control" name="name" maxlength="20" value="${system.name}" required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="description" class="col-md-3 control-label">描述</label>
+			<div class="col-md-9">
+				<input id="description" type="text" class="form-control" name="description" maxlength="300" value="${system.description}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="basepath" class="col-md-3 control-label">根目录</label>
+			<div class="col-md-9">
+				<input id="basepath" type="text" class="form-control" name="basepath" maxlength="100" value="${system.basepath}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="basepath" class="col-md-3 control-label">状态</label>
+			<div class="col-md-9">
+				<label class="radio-inline">
+					<input type="radio" name="status" id="status_1" value="1" <c:if test="${system.status==1}">checked</c:if>>正常
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="status" id="status_2" value="-1" <c:if test="${system.status==-1}">checked</c:if>>锁定
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-1 col-md-offset-5">
+				<button id="btn_save" type="button" class="btn btn-primary">保存</button>
+			</div>
+			<div class="col-md-1">
+				<button id="btn_cancel" type="button" class="btn btn-warning">取消</button>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="theme" class="col-md-3 control-label">主题色</label>
+			<div class="col-md-9">
+				<input id="theme" type="color" class="form-control" name="theme" maxlength="50" value="${system.theme}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="icon" class="col-md-3 control-label">图标</label>
+			<div class="col-md-9">
+				<input id="icon" type="text" class="form-control" name="icon" maxlength="20" value="${system.icon}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="title" class="col-md-3 control-label">标题</label>
+			<div class="col-md-9">
+				<input id="title" type="text" class="form-control" name="title" maxlength="20" value="${system.title}"  required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-md-3 control-label">名称</label>
+			<div class="col-md-9">
+				<input id="name" type="text" class="form-control" name="name" maxlength="20" value="${system.name}" required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="description" class="col-md-3 control-label">描述</label>
+			<div class="col-md-9">
+				<input id="description" type="text" class="form-control" name="description" maxlength="300" value="${system.description}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="basepath" class="col-md-3 control-label">根目录</label>
+			<div class="col-md-9">
+				<input id="basepath" type="text" class="form-control" name="basepath" maxlength="100" value="${system.basepath}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="basepath" class="col-md-3 control-label">状态</label>
+			<div class="col-md-9">
+				<label class="radio-inline">
+					<input type="radio" name="status" id="status_1" value="1" <c:if test="${system.status==1}">checked</c:if>>正常
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="status" id="status_2" value="-1" <c:if test="${system.status==-1}">checked</c:if>>锁定
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-1 col-md-offset-5">
+				<button id="btn_save" type="button" class="btn btn-primary">保存</button>
+			</div>
+			<div class="col-md-1">
+				<button id="btn_cancel" type="button" class="btn btn-warning">取消</button>
+			</div>
 		</div>
 	</form>
 </div>
 <script>
-function createSubmit(){
-    alert(123);
-    $.dialog({
-	animationSpeed: 300,
-	title: '新增系统',
-	theme:'bootstrap',
-	content: 'url:manage/system/create',
-	onContentReady: function () {
-	}
-});
-}
-
+$(function () {
+	$("#btn_save").click(function(){
+		$.ajax({
+	        type: 'post',
+	        url: 'manage/system/update/${system.systemId}',
+	        data: $('#updateForm').serialize(),
+	        beforeSend: function() {
+	            if ($('#title').val() == '') {
+	                $('#title').focus();
+	                return false;
+	            }
+	            if ($('#name').val() == '') {
+	                $('#name').focus();
+	                return false;
+	            }
+	        },
+	        success: function(result) {
+				if (result.code != 1) {
+					$.confirm({
+						theme: 'bootstrap',
+						animation: 'rotateX',
+						closeAnimation: 'rotateX',
+						title: false,
+						content: result.data.errorMsg,
+						buttons: {
+							confirm: {text: '确认'}
+						}
+					});
+				} else {
+					$.confirm({
+						title: '提示信息',
+						titleClass: 'background-color:#f1f1f1',
+						content: '修改成功!',
+						buttons: {
+							confirm: {
+								text:'确认',
+								action:function(){HdDialog.close(true);}
+							}
+						}
+					});
+				}
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.confirm({
+					theme: 'bootstrap',
+					animation: 'rotateX',
+					closeAnimation: 'rotateX',
+					title: false,
+					content: textStatus,
+					buttons: { 
+						confirm: { text: '确认'}
+					}
+				});
+	        }
+	    });
+	});
+	$("#btn_cancel").click(function(){
+		HdDialog.close(false);
+	});
+})
 </script>
