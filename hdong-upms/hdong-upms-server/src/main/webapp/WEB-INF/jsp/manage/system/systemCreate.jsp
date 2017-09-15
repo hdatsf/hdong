@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<div id="createDialog" class="crudDialog">
+<div id="createDialog">
 	<form id="createForm" method="post" class="form-horizontal">
 		<div class="form-group">
 			<label for="theme" class="col-md-3 control-label">主题色</label>
@@ -38,25 +37,81 @@
 				<input id="basepath" type="text" class="form-control" name="basepath" maxlength="100">
 			</div>
 		</div>
-		<div class="radio">
-			<div class="radio radio-inline radio-success">
-				<input id="status_1" type="radio" name="status" value="1" checked>
-				<label for="status_1">正常 </label>
-			</div>
-			<div class="radio radio-inline">
-				<input id="status_0" type="radio" name="status" value="-1">
-				<label for="status_0">锁定 </label>
+		<div class="form-group">
+			<label for="status" class="col-md-3 control-label">状态</label>
+			<div class="col-md-9">
+				<label class="radio-inline">
+					<input type="radio" name="status" id="status_1" value="1">正常
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="status" id="status_2" value="-1">锁定
+				</label>
 			</div>
 		</div>
-		<div class="form-group text-right dialog-buttons">
-			<a class="waves-effect waves-button" href="javascript:;" onclick="createSubmit();">保存</a>
-			<a class="waves-effect waves-button" href="javascript:;" onclick="createDialog.close();">取消</a>
+		<div class="form-group">
+			<div class="col-md-1 col-md-offset-5">
+				<button id="btn_save" type="button" class="btn btn-primary">保存</button>
+			</div>
+			<div class="col-md-1">
+				<button id="btn_cancel" type="button" class="btn btn-warning">取消</button>
+			</div>
 		</div>
 	</form>
 </div>
 <script>
 $(function () {
-   
+	$("#btn_save").click(function(){
+		$.ajax({
+	        type: 'post',
+	        url: 'manage/system/create',
+	        data: $('#createForm').serialize(),
+	        beforeSend: function() {
+	            if ($('#title').val() == '') {
+	                $('#title').focus();
+	                return false;
+	            }
+	            if ($('#name').val() == '') {
+	                $('#name').focus();
+	                return false;
+	            }
+	        },
+	        success: function(result) {
+				if (result.code != 1) {
+					$.confirm({
+						theme: 'bootstrap',
+						title: false,
+						content: result.data.errorMsg,
+						buttons: {
+							confirm: {text: '确认'}
+						}
+					});
+				} else {
+					$.confirm({
+						title:false,
+						content: '保存成功!',
+						buttons: {
+							confirm: {
+								text:'确认',
+								action:function(){HdDialog.close(true);}
+							}
+						}
+					});
+				}
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.confirm({
+					title: false,
+					content: textStatus,
+					buttons: { 
+						confirm: { text: '确认'}
+					}
+				});
+	        }
+	    });
+	});
+	$("#btn_cancel").click(function(){
+		HdDialog.close(false);
+	});
 });
 
 
