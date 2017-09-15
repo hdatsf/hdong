@@ -57,5 +57,10 @@
 			<property name="closeConn" value="true"/>
 		</plugin>
 	</plugins>
-
+	
+	<!-- 枚举
+	<typeHandlers>
+		<typeHandler handler="net.itaem.handler.UniversalHandler" javaType="net.itaem.less.PersonType"/>
+	</typeHandlers>
+ -->
 </configuration>

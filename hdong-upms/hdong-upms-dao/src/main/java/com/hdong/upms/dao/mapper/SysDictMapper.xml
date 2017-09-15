@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdong.upms.dao.mapper.UpmsUserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.hdong.upms.dao.model.UpmsUserRole">
-    <id column="user_role_id" jdbcType="INTEGER" property="userRoleId" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+<mapper namespace="com.hdong.upms.dao.mapper.SysDictMapper">
+  <resultMap id="BaseResultMap" type="com.hdong.upms.dao.model.SysDict">
+    <id column="app" jdbcType="VARCHAR" property="app" />
+    <id column="type" jdbcType="VARCHAR" property="type" />
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_role_id, user_id, role_id
+    app, type, code, desc
   </sql>
-  <select id="selectByExample" parameterType="com.hdong.upms.dao.model.UpmsUserRoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hdong.upms.dao.model.SysDictExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from upms_user_role
+    from sys_dict
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,70 +82,83 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from upms_user_role
-    where user_role_id = #{userRoleId,jdbcType=INTEGER}
+    from sys_dict
+    where app = #{app,jdbcType=VARCHAR}
+      and type = #{type,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from upms_user_role
-    where user_role_id = #{userRoleId,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from sys_dict
+    where app = #{app,jdbcType=VARCHAR}
+      and type = #{type,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hdong.upms.dao.model.UpmsUserRoleExample">
-    delete from upms_user_role
+  <delete id="deleteByExample" parameterType="com.hdong.upms.dao.model.SysDictExample">
+    delete from sys_dict
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
-    insert into upms_user_role (user_role_id, user_id, role_id
-      )
-    values (#{userRoleId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.hdong.upms.dao.model.SysDict">
+    insert into sys_dict (app, type, code, 
+      desc)
+    values (#{app,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
-    insert into upms_user_role
+  <insert id="insertSelective" parameterType="com.hdong.upms.dao.model.SysDict">
+    insert into sys_dict
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userRoleId != null">
-        user_role_id,
+      <if test="app != null">
+        app,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="type != null">
+        type,
       </if>
-      <if test="roleId != null">
-        role_id,
+      <if test="code != null">
+        code,
+      </if>
+      <if test="desc != null">
+        desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userRoleId != null">
-        #{userRoleId,jdbcType=INTEGER},
+      <if test="app != null">
+        #{app,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=INTEGER},
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hdong.upms.dao.model.UpmsUserRoleExample" resultType="java.lang.Long">
-    select count(*) from upms_user_role
+  <select id="countByExample" parameterType="com.hdong.upms.dao.model.SysDictExample" resultType="java.lang.Long">
+    select count(*) from sys_dict
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update upms_user_role
+    update sys_dict
     <set>
-      <if test="record.userRoleId != null">
-        user_role_id = #{record.userRoleId,jdbcType=INTEGER},
+      <if test="record.app != null">
+        app = #{record.app,jdbcType=VARCHAR},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
       </if>
-      <if test="record.roleId != null">
-        role_id = #{record.roleId,jdbcType=INTEGER},
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null">
+        desc = #{record.desc,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,31 +166,31 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update upms_user_role
-    set user_role_id = #{record.userRoleId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      role_id = #{record.roleId,jdbcType=INTEGER}
+    update sys_dict
+    set app = #{record.app,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
-    update upms_user_role
+  <update id="updateByPrimaryKeySelective" parameterType="com.hdong.upms.dao.model.SysDict">
+    update sys_dict
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="roleId != null">
-        role_id = #{roleId,jdbcType=INTEGER},
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
       </if>
     </set>
-    where user_role_id = #{userRoleId,jdbcType=INTEGER}
+    where app = #{app,jdbcType=VARCHAR}
+      and type = #{type,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hdong.upms.dao.model.UpmsUserRole">
-    update upms_user_role
-    set user_id = #{userId,jdbcType=INTEGER},
-      role_id = #{roleId,jdbcType=INTEGER}
-    where user_role_id = #{userRoleId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.hdong.upms.dao.model.SysDict">
+    update sys_dict
+    set desc = #{desc,jdbcType=VARCHAR}
+    where app = #{app,jdbcType=VARCHAR}
+      and type = #{type,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=VARCHAR}
   </update>
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

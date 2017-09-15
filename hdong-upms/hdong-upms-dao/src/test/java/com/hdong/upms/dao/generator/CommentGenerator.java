@@ -1,4 +1,4 @@
-package com.hdong.common.plugin;
+package com.hdong.upms.dao.generator;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
